@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>NESTMii Nutrition</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('background-image-url.png');
+      background-size: cover;
+      background-position: center 1px;
+      background-repeat: no-repeat; 
+    }
+
+    .navbar {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 2.5rem;
+      border-bottom: 1px solid #bd9c4f;
+    }
+
+    .navbar .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background-image: url('icon-image-url.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: translate(-50%, -50%);
+    }
+
+    .homepage{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .homepage .section-button{
+      justify-content: flex-start;
+    }
+
+    .section-button {
+      position: absolute;
+      margin-top: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #d8b35b;
+      letter-spacing: 2px;
+      font-size: 10px;
+      padding: 10px 20px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .section-button:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #d8b35b;
+      z-index: -1;
+      transition: transform 0.8s;
+      transform-origin: bottom right;
+      transform: scale(0);
+    }
+
+    .section-button:hover:before {
+      transition: transform 0.8s;
+      transform-origin: top left;
+      transform: scale(1);
+    }
+
+    .section-button:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: 2px solid #d8b35b;
+      box-sizing: border-box;
+      z-index: -1;
+      transition: transform 0.8s;
+      transform-origin: top left;
+      transform: scale(1);
+    }
+
+    .section-button:hover:after {
+      transition: transform 0.8s;
+      transform-origin: bottom right;
+      transform: scale(0);
+    }
+
+    .section-button:hover {
+      color: rgba(0, 0, 0, 0.7)
+    }
+    
+    .text-container {
+      padding-right: 12rem;
+      width: 25%;
+    }
+    .text-container h1 {
+      color: #d8b35b;
+      font-family: Microsoft JhengHei;
+      font-size: 100px;
+      font-weight: 100;
+      letter-spacing: 0.1em;
+    }
+    .text-container h4 {
+      color: #d8b35b;
+      font-family: Microsoft JhengHei;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .section-buttons {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 50px;
+    }
+    
+    .navbar-icons {
+      position: absolute;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+}
+    
+    .left-button {
+      color: #d8b35b;
+      margin-right: 1rem;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    .left-button:hover {
+      border-bottom: 1px solid #d8b35b;
+    }
+
+    .left-buttons-container {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.6s ease-in-out;
+    }
+    
+    .left-buttons-container-expanded {
+      max-height: 200px;
+    }
+    .burger-menu {
+      cursor: pointer;
+      margin-right: 1rem;
+      color:#d8b35b;
+      font-size: x-large;
+    }   
+
+    .social-media {
+      display: flex;
+    }
+
+    .social-media a {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 200ms;
+    }
+
+    .social-media a span {
+      color: #d8b35b;
+      font-size: x-large;
+    }
+
+    .social-media a:hover {
+      transform: scale(1.25);
+    }
+
+    .background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background-image-url.png');
+  background-size: cover;
+  background-position: center 1px;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+    /* Mobile styles */
+@media (max-width: 767px) {
+  .body{
+    background-size: cover;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1.5rem;
+  }
+
+  .navbar .icon {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .section-buttons {
+    margin-left: 0;
+  }
+
+  .navbar-icons {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
+  }
+
+  .text-container {
+    padding-right: 2rem;
+    width: 100%;
+    text-align: center;
+    padding-left: 2rem; 
+    padding-bottom: 2rem; 
+  }
+
+  .homepage {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar {
+    padding: 1.5rem;
+  }
+
+  .text-container {
+    padding-right: 4rem;
+    width: 50%;
+  }
+
+  .text-container h4 {
+    font-weight: 200;
+    line-height: 1.5;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="background-image"></div>
+  <nav class="navbar">
+    <div class="section-buttons">
+      <div id="burger-menu" class="burger-menu">&#9776;</div>
+      <div id="left-buttons-container" class="left-buttons-container">
+      <a href="#" class="left-button">Home</a>
+      <a href="#" class="left-button">Products</a>
+      <a href="#" class="left-button">About Us</a>
+      <a href="#" class="left-button">Join Us</a>
+      <a href="#" class="left-button">Shipping & Return Policy</a>
+      <a href="#" class="left-button">English</a>
+      <a href="#" class="left-button">长期滋补</a>
+      </div>
+    <div class="icon"></div>
+    <div class="navbar-icons">
+      <div class="col-md-3 d-flex justify-content-end align-items-center">
+        <div class="social-media">
+          <p class="mb-0 d-flex">
+            <a href="#"><span class="fa fa-user-circle-o"><i class="sr-only">Login</i></span></a>
+          </p>
+          <p class="mb-0 d-flex">
+            <a href="#"><span class="fa fa-search"><i class="sr-only">Search</i></span></a>
+          </p>
+          <p class="mb-0 d-flex">
+            <a href="#"><span class="fa fa-cart-plus"><i class="sr-only">Cart</i></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </nav>
+  <div class="homepage">
+  <div class="text-container">
+    <h1>NESTMII</h1>
+        <p><h4>NESTMii 创立于2015年, 致力于传承亚洲千年滋补文化, 打造轻奢生活方式,让滋补更便
+          捷、时尚、可随时随地享受,使传统滋补品焕发出新的生命力。
+          我们从最经典的燕窝入手 ,甄选印尼雨季燕盏,采用独特的手法保留滋补品最大的营养成
+          分,纯手工挑毛,隔水炖煮。0添加,0 防腐剂 , 研制了 30+余种鲜炖燕窝的营养美味搭配
+          当天鲜炖后立即冷链配送,摒弃传统实体店铺形式,采用中央厨房+ 线上销售+配送到门模
+          式。六年来我们积累了3000+用户,回购率高达89%!
+          
+          为了方便长期滋补的客户,我们使用周期订阅的服务模式。用户可以按年 按月订购,并且
+          可以随时修改自己的发货时间和收货地址,方便用户在上班、休假和出差场景中自由切换。
+          除周期派送外,NESTMii与各大品牌以及私人聚会合作举办多次燕窝品鉴会也吸引了很多高端用户。
+        </h4></p>
+          <a href="#" class="section-button">立即購買</a>
+      </div>
+    </div>
+    <script>
+      document.getElementById('burger-menu').addEventListener('click', function() {
+        var leftButtonsContainer = document.getElementById('left-buttons-container');
+        leftButtonsContainer.classList.toggle('left-buttons-container-expanded');
+      });
+    </script>
+</body>
+</html>
